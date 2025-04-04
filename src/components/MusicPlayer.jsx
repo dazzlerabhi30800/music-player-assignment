@@ -10,12 +10,11 @@ const MusicPlayer = () => {
     playRef,
     prevIndex,
     nextIndex,
-    progressVal,
     setBackgroundSize,
     setProgressVal,
-    totalDuration,
     setTotalDuration,
     setCurrDuration,
+    handleRecent,
   } = useMusicContext();
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -30,6 +29,7 @@ const MusicPlayer = () => {
       audioRef.current.pause();
       return;
     }
+    handleRecent(currSong.id);
     audioRef.current.play();
   }, [isPlaying]);
 
@@ -39,6 +39,7 @@ const MusicPlayer = () => {
     audioRef.current.src = currSong.musicUrl;
     audioRef.current.currentTime = 0;
     audioRef.current.play();
+    handleRecent(currSong.id);
     setIsPlaying(true);
   }, [currSong]);
 

@@ -1,3 +1,6 @@
-1. -> Design the page for desktop first, because I don't have the mobile design.
+1. X -> Design the page for desktop first, because I don't have the mobile design.
+2. -> Make the filter buttons, favorite, recently played.
+3. -> implement the recently played functionality.
+4. -> dynamic background;
 
 ## Header

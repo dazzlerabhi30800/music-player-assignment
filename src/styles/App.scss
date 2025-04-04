@@ -206,9 +206,20 @@ main {
       color: $grey-text;
     }
   }
+  .empty--playlist {
+    @include flexBox2(row, center, center);
+    flex: 1;
+    height: inherit;
+    p {
+      font-size: 32px;
+      font-weight: 700;
+    }
+  }
   .playlist--wrapper {
     overflow-y: auto;
     padding: 0 20px;
+    @include flexBox(column);
+    gap: 10px;
     .playlist--comp {
       @include flexBox(row);
       align-items: center;

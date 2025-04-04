@@ -2,18 +2,30 @@ import React from "react";
 import { useMusicContext } from "../context/Context";
 import { formatTime } from "../utils/formatTime";
 
-const MusicContainer = () => {
-  const { musicData, setCurrSong, playRef, currSong } = useMusicContext();
+const MusicContainer = ({ searchString }) => {
+  const { data, currTab, setCurrSong, playRef, currSong } = useMusicContext();
   const handlePlayMusic = (music) => {
     setCurrSong(music);
     if (!playRef.current) {
       playRef.current = true;
     }
   };
+  const musicData = data[currTab];
+  const filteredData = musicData.filter(
+    (music) =>
+      music.title.toLowerCase().includes(searchString.toLowerCase()) ||
+      music.artistName.toLowerCase().includes(searchString.toLowerCase())
+  );
+  if (filteredData.length === 0)
+    return (
+      <div className="empty--playlist">
+        <p>No track found</p>
+      </div>
+    );
   return (
     <div className="playlist--wrapper">
       {/* Comp */}
-      {musicData?.map((music) => {
+      {filteredData?.map((music) => {
         const { id, title, thumbnail, artistName, duration } = music;
         return (
           <div
