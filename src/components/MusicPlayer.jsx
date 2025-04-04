@@ -16,7 +16,14 @@ const MusicPlayer = () => {
     totalDuration,
     setTotalDuration,
   } = useMusicContext();
+
   const [isPlaying, setIsPlaying] = useState(false);
+  const volumeRef = useRef();
+  const [showVolume, setShowVolume] = useState(false);
+  const [volume, setVolume] = useState(100);
+
+  // for playing
+
   useEffect(() => {
     if (!isPlaying) {
       audioRef.current.pause();
@@ -24,6 +31,8 @@ const MusicPlayer = () => {
     }
     audioRef.current.play();
   }, [isPlaying]);
+
+  // when the music info is changed
   useEffect(() => {
     if (!playRef.current) return;
     audioRef.current.src = currSong.musicUrl;
@@ -32,6 +41,7 @@ const MusicPlayer = () => {
     setIsPlaying(true);
   }, [currSong]);
 
+  // for current song playing event listener
   const handleTimeUpdate = () => {
     let currTime = audioRef.current.currentTime;
     setProgressVal(Math.floor(currTime));
@@ -94,9 +104,28 @@ const MusicPlayer = () => {
                 </button>
               </div>
               {/* Volume Button */}
-              <button className="volume--btn control--btn">
-                <i className="bi bi-volume-up"></i>
-              </button>
+              <div className="volume--control" ref={volumeRef}>
+                <button
+                  onClick={() => setShowVolume((prev) => !prev)}
+                  className="volume--btn control--btn"
+                >
+                  <i className="bi bi-volume-up"></i>
+                </button>
+                {showVolume && (
+                  <div className="volume--slider">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={volume}
+                      onChange={(e) => {
+                        setVolume(e.target.value);
+                        audioRef.current.volume = e.target.value / 100;
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
