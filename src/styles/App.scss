@@ -425,7 +425,7 @@ main {
   position: absolute;
   top: 40px;
   border: 2px solid $text-color;
-  left: 100%;
+  left: 10%;
   transform: translateX(-40%);
   background: rgb(39, 39, 39);
   padding: 8px;
@@ -448,9 +448,10 @@ main {
     &.isFav {
       color: red;
     }
-    &:hover {
-      color: red;
-    }
+  }
+
+  &:hover {
+    opacity: 0.7;
   }
 }
 
@@ -528,10 +529,6 @@ main {
   }
 }
 
-.loader {
-  animation: spin 1s linear infinite;
-}
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -539,4 +536,8 @@ main {
   to {
     transform: rotate(360deg);
   }
+}
+
+.loader {
+  animation: spin 1s linear infinite;
 }

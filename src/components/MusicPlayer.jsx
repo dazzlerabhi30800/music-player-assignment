@@ -31,7 +31,6 @@ const MusicPlayer = () => {
       audioRef.current.pause();
       return;
     }
-    console.log("hello is it playing");
     if (!loading && isPlaying) {
       handleRecent(currSong.id);
       audioRef.current.play();
@@ -45,8 +44,6 @@ const MusicPlayer = () => {
     audioRef.current.currentTime = 0;
     setIsPlaying(false);
     handleRecent(currSong.id);
-    // audioRef.current.play();
-    // setIsPlaying(true);
   }, [currSong]);
 
   // for current song playing event listener
@@ -114,11 +111,11 @@ const MusicPlayer = () => {
                       <i className="bi bi-play-fill"></i>
                     )
                   ) : (
-                    <i className="bi bi-arrow-repeat"></i>
+                    <i className="bi bi-arrow-repeat loader"></i>
                   )}
                 </button>
                 <button onClick={nextIndex} className="playback--btn">
-                  <i className="bi bi-fast-forward-fill loader"></i>
+                  <i className="bi bi-fast-forward-fill"></i>
                 </button>
               </div>
               {/* Volume Button */}

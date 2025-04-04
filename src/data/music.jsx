@@ -65,7 +65,7 @@ export const songData = [
     musicUrl: "/songs/leave-the-door-open.mp3",
     artistName: "Bruno Mars",
     duration: 242,
-    bg1: "#5c4819",
+    bg1: "#493914",
     bg2: "#060601",
   },
   {
@@ -87,8 +87,8 @@ export const songData = [
     musicUrl: "/songs/peaches.mp3",
     artistName: "Justin Bieber",
     duration: 197,
-    bg1: "#14371a",
-    bg2: "#01131b",
+    bg1: "#0b1f12",
+    bg2: "#061217",
   },
   {
     id: 9,
