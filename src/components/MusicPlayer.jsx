@@ -15,6 +15,7 @@ const MusicPlayer = () => {
     setProgressVal,
     totalDuration,
     setTotalDuration,
+    setCurrDuration,
   } = useMusicContext();
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -43,14 +44,16 @@ const MusicPlayer = () => {
 
   // for current song playing event listener
   const handleTimeUpdate = () => {
-    let currTime = audioRef.current.currentTime;
+    let currTime = Math.floor(audioRef.current.currentTime);
     setProgressVal(Math.floor(currTime));
     let duration = Math.floor(audioRef.current.duration);
     let bgSize = (currTime / duration) * 100 + "%";
+    setCurrDuration(Math.floor(currTime));
     setBackgroundSize(bgSize === "NaN%" ? "0%" : bgSize);
-    if (progressVal === totalDuration) {
+    if (currTime === duration) {
       setIsPlaying(false);
       setBackgroundSize("0%");
+      setProgressVal(0);
       audioRef.current.currenTime = 0;
     }
   };

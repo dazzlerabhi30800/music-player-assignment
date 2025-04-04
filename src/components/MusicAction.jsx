@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useMusicContext } from "../context/Context";
 
 const MusicAction = () => {
   const [showAction, setShowAction] = useState(false);
+  const { favMusic, currSong, handleFav } = useMusicContext();
+
+  const isFav = favMusic.find((music) => music.id === currSong.id);
   const ref = useRef();
   const handleClick = (e) => {
     if (ref && !ref.current.contains(e.target)) {
@@ -24,7 +28,13 @@ const MusicAction = () => {
         <i className="bi bi-three-dots"></i>
       </button>
       <div className={`action--wrapper ${showAction && "show"}`}>
-        <button className="action--comp">
+        <button
+          onClick={() => {
+            handleFav(currSong.id, isFav);
+            setShowAction(false);
+          }}
+          className={`action--comp ${isFav && "isFav"}`}
+        >
           <i className="bi bi-heart-fill"></i>
         </button>
       </div>

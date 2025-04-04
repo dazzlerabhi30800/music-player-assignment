@@ -6,13 +6,14 @@ export const musicContext = createContext();
 export default function MusicContextProvider({ children }) {
   const [musicData, setMusicData] = useState(songData);
   const [currSong, setCurrSong] = useState(songData[0]);
+  const [favMusic, setFavMusic] = useState([]);
 
   const audioRef = useRef(new Audio(currSong.musicUrl));
   const playRef = useRef(null);
-  const progressRef = useRef();
   const [backgroundSize, setBackgroundSize] = useState("0%");
   const [progressVal, setProgressVal] = useState(0);
   const [totalDuration, setTotalDuration] = useState(Infinity);
+  const [currDuration, setCurrDuration] = useState(0);
 
   const [currSongIndex, setCurrSongIndex] = useState(0);
   const nextIndex = () => {
@@ -32,6 +33,15 @@ export default function MusicContextProvider({ children }) {
     playRef.current = true;
   }, [currSongIndex]);
 
+  const handleFav = (id, isFav) => {
+    if (!isFav) {
+      const findItem = musicData.find((music) => music.id === id);
+      setFavMusic((prev) => [{ ...findItem }, ...prev]);
+    } else {
+      setFavMusic(favMusic.filter((music) => music.id !== id));
+    }
+  };
+
   return (
     <musicContext.Provider
       value={{
@@ -39,7 +49,6 @@ export default function MusicContextProvider({ children }) {
         currSong,
         setCurrSong,
         audioRef,
-        progressRef,
         playRef,
         prevIndex,
         nextIndex,
@@ -49,6 +58,11 @@ export default function MusicContextProvider({ children }) {
         setProgressVal,
         totalDuration,
         setTotalDuration,
+        favMusic,
+        setFavMusic,
+        handleFav,
+        currDuration,
+        setCurrDuration,
       }}
     >
       {children}
