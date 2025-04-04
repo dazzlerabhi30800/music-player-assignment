@@ -31,7 +31,7 @@ export default function MusicContextProvider({ children }) {
   };
   const prevIndex = () => {
     setCurrSongIndex((prev) =>
-      prev - 1 <= 0 ? musicData.length - 1 : prev - 1
+      prev - 1 < 0 ? musicData.length - 1 : prev - 1
     );
   };
   const data = {
