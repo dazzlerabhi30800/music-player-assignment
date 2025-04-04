@@ -1,8 +1,10 @@
 import React from "react";
 import { useMusicContext } from "../context/Context";
+import Resize from "../utils/useResize";
 
 const SidebarNav = () => {
-  const { currTab, setCurrTab, setTabTitle, setShowList } = useMusicContext();
+  const { currTab, setCurrTab, setTabTitle, setShowList, showList } =
+    useMusicContext();
   const linkData = [
     {
       title: "For You",
@@ -25,6 +27,7 @@ const SidebarNav = () => {
       to: "#",
     },
   ];
+  const resize = Resize();
   return (
     <nav className="navbar">
       <header>
@@ -38,8 +41,13 @@ const SidebarNav = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   setCurrTab(link.label);
-                  setShowList(true);
                   setTabTitle(link.title);
+                  if (resize < 950) {
+                    setShowList(true);
+                  }
+                  if (resize >= 950 && showList) {
+                    setShowList(false);
+                  }
                 }}
               >
                 {link.title}

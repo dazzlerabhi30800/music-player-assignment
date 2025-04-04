@@ -13,6 +13,7 @@ export default function MusicContextProvider({ children }) {
     JSON.parse(sessionStorage.getItem("recents")) || []
   );
   const [showList, setShowList] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [currTab, setCurrTab] = useState("home");
   const [tabTitle, setTabTitle] = useState("For You");
@@ -110,6 +111,8 @@ export default function MusicContextProvider({ children }) {
         setTabTitle,
         showList,
         setShowList,
+        loading,
+        setLoading,
       }}
     >
       {children}
