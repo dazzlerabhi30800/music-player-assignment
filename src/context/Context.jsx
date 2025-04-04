@@ -6,7 +6,9 @@ export const musicContext = createContext();
 export default function MusicContextProvider({ children }) {
   const [musicData, setMusicData] = useState(songData);
   const [currSong, setCurrSong] = useState(songData[0]);
-  const [favMusic, setFavMusic] = useState([]);
+  const [favMusic, setFavMusic] = useState(
+    JSON.parse(localStorage.getItem("favData")) || []
+  );
   const [recentData, setRecentData] = useState(
     JSON.parse(sessionStorage.getItem("recents")) || []
   );
@@ -49,6 +51,10 @@ export default function MusicContextProvider({ children }) {
   useEffect(() => {
     sessionStorage.setItem("recents", JSON.stringify(recentData));
   }, [recentData]);
+
+  useEffect(() => {
+    localStorage.setItem("favData", JSON.stringify(favMusic));
+  }, [favMusic]);
 
   const handleFav = (id, isFav) => {
     if (!isFav) {

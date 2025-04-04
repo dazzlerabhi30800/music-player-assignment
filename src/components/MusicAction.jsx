@@ -27,7 +27,11 @@ const MusicAction = () => {
       >
         <i className="bi bi-three-dots"></i>
       </button>
-      <div className={`action--wrapper ${showAction && "show"}`}>
+      <div
+        className={`action--wrapper ${showAction && "show"} ${
+          isFav && "isFav"
+        }`}
+      >
         <button
           onClick={() => {
             handleFav(currSong.id, isFav);

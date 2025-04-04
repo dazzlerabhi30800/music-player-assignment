@@ -5,7 +5,7 @@ $grey-text: #ffffff80;
 $grey: rgba(255, 255, 255, 30%);
 $image-width: 48px;
 $image-height: 48px;
-$device-width: 900px;
+$device-width: 950px;
 
 // font
 
@@ -73,7 +73,11 @@ main {
   transition: all 0.5s linear;
   @media (min-width: $device-width) {
     display: grid;
+    gap: 10px;
     grid-template-columns: repeat(6, 1fr);
+  }
+  @media (min-width: 1200px) {
+    gap: 0;
   }
 }
 
@@ -106,6 +110,12 @@ main {
       display: none;
       @media (min-width: $device-width) {
         display: block;
+        width: 110px;
+        height: auto;
+      }
+      @media (min-width: 1200px) {
+        width: 133.41px;
+        height: 40px;
       }
     }
     .links {
@@ -134,12 +144,15 @@ main {
           }
           &.highlight {
             opacity: 1;
+            font-weight: 700;
           }
         }
         @media (min-width: $device-width) {
-          font-size: 20px;
           text-align: left;
           padding: 0;
+        }
+        @media (min-width: 1100px) {
+          font-size: 20px;
         }
       }
     }
@@ -189,11 +202,16 @@ main {
   }
   @media (min-width: 1200px) {
     grid-column: span 2;
-    // padding: 40px 0;
   }
   h1 {
     font-size: 32px;
     padding: 0 20px;
+    @media (min-width: $device-width) {
+      font-size: 26px;
+    }
+    @media (min-width: 1200px) {
+      font-size: 32px;
+    }
   }
 
   .song--finder {
@@ -267,11 +285,26 @@ main {
         .song--text {
           h3 {
             font-size: 18px;
+            @media (min-width: $device-width) {
+              font-size: 14px;
+            }
+
+            @media (min-width: 1200px) {
+              font-size: 18px;
+            }
           }
           p {
             font-size: 14px;
             margin-top: 2px;
             color: $grey-text;
+
+            @media (min-width: $device-width) {
+              font-size: 12px;
+            }
+
+            @media (min-width: 1200px) {
+              font-size: 14px;
+            }
           }
         }
       }
@@ -283,12 +316,11 @@ main {
   }
 }
 .outer--search--box {
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 // Music  Player
 .music--player--wrapper {
-  // background: rgba(82, 83, 20, 0.199);
   @include flexBox(row);
   height: inherit;
   flex: 1;
@@ -300,7 +332,7 @@ main {
   }
   .music--player--container {
     @include flexBox(column);
-    width: clamp(350px, 80%, 400px);
+    width: clamp(300px, 80%, 400px);
     gap: 40px;
     @media (min-width: $device-width) {
       width: clamp(350px, 80%, 480px);
@@ -324,9 +356,12 @@ main {
       .cover--art {
         border-radius: 8px;
         width: 100%;
-        height: 400px;
+        height: 350px;
+        @media (min-width: 450px) {
+          height: 420px;
+        }
         @media (min-width: 1100px) {
-          height: 480px;
+          height: 460px;
         }
       }
       .controls {
@@ -384,26 +419,27 @@ main {
   background: $grey;
   position: relative;
   position: absolute;
-  top: 55px;
-  border: 1px solid rgb(165, 70, 114);
-  left: 50%;
-  transform: translateX(-50%);
+  top: 40px;
+  border: 2px solid $text-color;
+  left: 100%;
+  transform: translateX(-40%);
+  background: rgb(39, 39, 39);
   padding: 8px;
   border-radius: 8px;
-  height: 0;
-  width: 0;
-  opacity: 0;
-  overflow: hidden;
+  height: 40px;
+  width: 40px;
   z-index: -1;
+  &.isFav {
+    border-color: #f51b5c;
+  }
+
   &.show {
-    height: 45px;
     z-index: 10;
-    opacity: 1;
-    width: 45px;
+    display: flex;
     transition: 0.2s linear;
   }
   button {
-    font-size: 20px;
+    font-size: 16px;
     color: $text-color;
     &.isFav {
       color: red;
@@ -451,14 +487,15 @@ main {
   position: relative;
   .volume--slider {
     position: absolute;
-    left: 50%;
-    top: 60px;
+    left: 30%;
+    top: 50px;
     transform: translateX(-50%);
-    height: 35px;
-    width: 150px;
-    background: #56575783;
-    padding: 10px;
-    border-radius: 8px;
+    height: 30px;
+    width: 130px;
+    background: #323333a4;
+    z-index: 44;
+    padding: 6px;
+    border-radius: 5px;
     @include flexBox2(row, center, center);
     input {
       width: 100%;
