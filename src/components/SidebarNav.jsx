@@ -2,7 +2,7 @@ import React from "react";
 import { useMusicContext } from "../context/Context";
 
 const SidebarNav = () => {
-  const { currTab, setCurrTab } = useMusicContext();
+  const { currTab, setCurrTab, setTabTitle, setShowList } = useMusicContext();
   const linkData = [
     {
       title: "For You",
@@ -38,6 +38,8 @@ const SidebarNav = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   setCurrTab(link.label);
+                  setShowList(true);
+                  setTabTitle(link.title);
                 }}
               >
                 {link.title}

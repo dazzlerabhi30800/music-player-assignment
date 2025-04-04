@@ -10,8 +10,10 @@ export default function MusicContextProvider({ children }) {
   const [recentData, setRecentData] = useState(
     JSON.parse(sessionStorage.getItem("recents")) || []
   );
+  const [showList, setShowList] = useState(false);
 
   const [currTab, setCurrTab] = useState("home");
+  const [tabTitle, setTabTitle] = useState("For You");
 
   const audioRef = useRef(new Audio(currSong.musicUrl));
   const playRef = useRef(null);
@@ -98,6 +100,10 @@ export default function MusicContextProvider({ children }) {
         setCurrTab,
         data,
         handleRecent,
+        tabTitle,
+        setTabTitle,
+        showList,
+        setShowList,
       }}
     >
       {children}

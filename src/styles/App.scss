@@ -5,6 +5,15 @@ $grey-text: #ffffff80;
 $grey: rgba(255, 255, 255, 30%);
 $image-width: 48px;
 $image-height: 48px;
+$device-width: 900px;
+
+// font
+
+@font-face {
+  font-family: "Baskier";
+  src: url("./basier-font.woff2") format("woff2");
+  font-display: swap;
+}
 
 @mixin flexBox($direction) {
   display: flex;
@@ -38,6 +47,7 @@ $image-height: 48px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Baskier";
 }
 button {
   background: transparent;
@@ -59,12 +69,11 @@ main {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(108.18deg, #201606 2.46%, #000000 99.84%);
-  @media (min-width: 850px) {
+  background: linear-gradient(108.18deg, var(--bg-1) 2.46%, var(--bg-2) 99.84%);
+  transition: all 0.5s linear;
+  @media (min-width: $device-width) {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-  }
-  @media (min-width: 1000px) {
   }
 }
 
@@ -72,13 +81,15 @@ main {
   display: flex;
   width: 100%;
   height: fit-content;
-  background: rgb(19, 33, 41);
-  @media (min-width: 850px) {
+  box-shadow: 0 0 30px 1px #1414149d;
+  border-bottom: 1px solid #57555577;
+  @media (min-width: $device-width) {
     padding: 32px 0 32px 20px;
+    box-shadow: none;
     grid-column: span 1;
     flex-direction: column;
     height: 100%;
-    background: transparent;
+    border-bottom: none;
     justify-content: space-between;
   }
   @media (min-width: 1200px) {
@@ -93,7 +104,7 @@ main {
       height: 40px;
       object-fit: cover;
       display: none;
-      @media (min-width: 850px) {
+      @media (min-width: $device-width) {
         display: block;
       }
     }
@@ -103,7 +114,7 @@ main {
       justify-content: space-between;
       width: 100%;
       gap: 0;
-      @media (min-width: 850px) {
+      @media (min-width: $device-width) {
         flex-direction: column;
         gap: 24px;
       }
@@ -125,7 +136,7 @@ main {
             opacity: 1;
           }
         }
-        @media (min-width: 850px) {
+        @media (min-width: $device-width) {
           font-size: 20px;
           text-align: left;
           padding: 0;
@@ -135,7 +146,7 @@ main {
   }
   .cover--img {
     display: none;
-    @media (min-width: 850px) {
+    @media (min-width: $device-width) {
       display: block;
     }
   }
@@ -160,13 +171,21 @@ main {
   width: 100%;
   height: 100%;
   transform: translateY(100%);
-  background: rgba(128, 36, 36, 0.171);
+  // background: black;
+  background: linear-gradient(108.18deg, var(--bg-1) 2.46%, var(--bg-2) 99.84%);
+  z-index: 44;
+  // show on link change
+  &.active {
+    transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
   @include flexBox(column);
   gap: 24px;
-  @media (min-width: 850px) {
+  @media (min-width: $device-width) {
     position: static;
     grid-column: span 2;
     transform: translateY(0);
+    background: none;
   }
   @media (min-width: 1200px) {
     grid-column: span 2;
@@ -269,13 +288,13 @@ main {
 
 // Music  Player
 .music--player--wrapper {
-  background: rgba(82, 83, 20, 0.199);
+  // background: rgba(82, 83, 20, 0.199);
   @include flexBox(row);
   height: inherit;
   flex: 1;
   align-items: center;
   justify-content: center;
-  @media (min-width: 850px) {
+  @media (min-width: $device-width) {
     grid-column: span 3;
     height: 100%;
   }
@@ -283,7 +302,7 @@ main {
     @include flexBox(column);
     width: clamp(350px, 80%, 400px);
     gap: 40px;
-    @media (min-width: 850px) {
+    @media (min-width: $device-width) {
       width: clamp(350px, 80%, 480px);
     }
     .song--header {
@@ -444,5 +463,26 @@ main {
     input {
       width: 100%;
     }
+  }
+}
+
+// Menu Btn styling
+.menu--btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  color: white;
+  @include flexBox2(row, center, center);
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 20px;
+  &:hover {
+    border-color: $grey-text;
+    color: $grey-text;
+  }
+  @media (min-width: $device-width) {
+    display: none;
   }
 }
