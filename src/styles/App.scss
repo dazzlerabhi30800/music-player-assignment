@@ -166,6 +166,7 @@ main {
   }
   .cover--img {
     display: none;
+    border: 2px solid #a7a7a7;
     @media (min-width: $device-width) {
       display: block;
     }

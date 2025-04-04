@@ -76,7 +76,7 @@ export const songData = [
     musicUrl: "/songs/old-town-road.mp3",
     artistName: "Lil Nas X",
     duration: 157,
-    bg1: "#4e301f",
+    bg1: "#3b2518",
     bg2: "#180513",
   },
   {
