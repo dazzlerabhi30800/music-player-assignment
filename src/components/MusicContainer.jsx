@@ -6,17 +6,15 @@ const MusicContainer = ({ searchString }) => {
   const { data, currTab, setCurrSong, playRef, currSong, setLoading } =
     useMusicContext();
   const handlePlayMusic = (music) => {
-    setLoading(true);
     setCurrSong(music);
+    setLoading(true);
     if (!playRef.current) {
       playRef.current = true;
     }
   };
   const musicData = data[currTab];
-  const filteredData = musicData.filter(
-    (music) =>
-      music.title.toLowerCase().includes(searchString.toLowerCase()) ||
-      music.artistName.toLowerCase().includes(searchString.toLowerCase())
+  const filteredData = musicData.filter((music) =>
+    music.title.toLowerCase().includes(searchString.toLowerCase())
   );
   if (filteredData.length === 0)
     return (
