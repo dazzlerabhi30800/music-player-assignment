@@ -31,15 +31,16 @@ const MusicPlayer = () => {
     audioRef.current.play();
     setIsPlaying(true);
   }, [currSong]);
-  // console.log(totalDuration);
 
   const handleTimeUpdate = () => {
     let currTime = audioRef.current.currentTime;
     setProgressVal(Math.floor(currTime));
-    let bgSize = (currTime / Math.floor(audioRef.current.duration)) * 100 + "%";
-    setBackgroundSize(bgSize);
+    let duration = Math.floor(audioRef.current.duration);
+    let bgSize = (currTime / duration) * 100 + "%";
+    setBackgroundSize(bgSize === "NaN%" ? "0%" : bgSize);
     if (progressVal === totalDuration) {
       setIsPlaying(false);
+      setBackgroundSize("0%");
       audioRef.current.currenTime = 0;
     }
   };

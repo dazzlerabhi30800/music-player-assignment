@@ -382,7 +382,7 @@ main {
 }
 
 input[type="range"] {
-  --background-size: 40%;
+  --background-size: 0%;
   -webkit-appearance: none;
   appearance: none;
   background: rgba(255, 255, 255, 0.2);
@@ -398,7 +398,6 @@ input[type="range"] {
     appearance: none;
     background: transparent;
     border-radius: 20px;
-    transition: 0.3s linear;
   }
 
   &::-webkit-slider-thumb {
