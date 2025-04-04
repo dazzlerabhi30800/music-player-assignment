@@ -3,5 +3,6 @@
 3. X  -> implement the recently played functionality.
 4. X -> dynamic background;
 5 X -> font in the design
+6  -> Fav icon
 
 ## Header
