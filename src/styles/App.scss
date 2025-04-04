@@ -1,0 +1,414 @@
+$text-color: #fff;
+$bg-color: #000000;
+$nav-font: 20px;
+$grey-text: #ffffff80;
+$grey: rgba(255, 255, 255, 30%);
+$image-width: 48px;
+$image-height: 48px;
+
+@mixin flexBox($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin flexBox2($direction, $justify, $align) {
+  @include flexBox($direction);
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin buttonStyle($background, $text, $hoverBg, $iconMargin) {
+  background: $background;
+  color: $text;
+  font-size: 25px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  @include flexBox2(row, center, center);
+  transition: 0.3s linear;
+  &:hover {
+    background: $hoverBg;
+  }
+  i {
+    margin-top: $iconMargin;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  color: $text-color;
+}
+
+main {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(108.18deg, #201606 2.46%, #000000 99.84%);
+  @media (min-width: 850px) {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  @media (min-width: 1000px) {
+  }
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  background: rgb(19, 33, 41);
+  @media (min-width: 850px) {
+    padding: 32px 0 32px 20px;
+    grid-column: span 1;
+    flex-direction: column;
+    height: 100%;
+    background: transparent;
+    justify-content: space-between;
+  }
+  @media (min-width: 1200px) {
+    padding: 32px 0 32px 32px;
+  }
+  header {
+    @include flexBox(column);
+    gap: 28px;
+    width: 100%;
+    .logo {
+      width: 133.41px;
+      height: 40px;
+      object-fit: cover;
+      display: none;
+      @media (min-width: 850px) {
+        display: block;
+      }
+    }
+    .links {
+      @include flexBox(row);
+      list-style: none;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0;
+      @media (min-width: 850px) {
+        flex-direction: column;
+        gap: 24px;
+      }
+      li {
+        padding: 12px 0;
+        flex-grow: 1;
+        font-size: 16px;
+        text-align: center;
+        a {
+          color: #ffffff;
+          opacity: 0.4;
+          text-decoration: none;
+          width: 100%;
+          transition: 0.3s linear;
+          &:hover {
+            opacity: 1;
+          }
+          &.highlight {
+            opacity: 1;
+          }
+        }
+        @media (min-width: 850px) {
+          font-size: 20px;
+          text-align: left;
+          padding: 0;
+        }
+      }
+    }
+  }
+  .cover--img {
+    display: none;
+    @media (min-width: 850px) {
+      display: block;
+    }
+  }
+}
+
+.cover--img {
+  width: $image-width;
+  height: $image-height;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+// Song Container Styling
+
+.song--wrapper {
+  // padding-top: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+  background: rgba(128, 36, 36, 0.171);
+  @include flexBox(column);
+  gap: 24px;
+  @media (min-width: 850px) {
+    position: static;
+    grid-column: span 2;
+    transform: translateY(0);
+  }
+  @media (min-width: 1200px) {
+    grid-column: span 2;
+    // padding: 40px 0;
+  }
+  h1 {
+    font-size: 32px;
+    padding: 0 20px;
+  }
+
+  .song--finder {
+    @include flexBox(row);
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 9px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    gap: 2px;
+    @media (min-width: 1200px) {
+      padding: 9px 16px;
+    }
+    input {
+      background: none;
+      color: #fff;
+      font-size: 18px;
+      flex: 1;
+      width: 100%;
+      outline: none;
+      border: none;
+      &::placeholder {
+        color: $grey-text;
+      }
+    }
+    button {
+      font-size: 20px;
+      color: $grey-text;
+    }
+  }
+  .playlist--wrapper {
+    overflow-y: auto;
+    padding: 0 20px;
+    .playlist--comp {
+      @include flexBox(row);
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 10px;
+      transition: 0.3s linear;
+      &.active {
+        background: rgba(255, 255, 255, 0.11);
+      }
+      &:hover {
+        background: rgba(255, 255, 255, 0.11);
+      }
+      @media (min-width: 1200px) {
+        padding: 20px;
+      }
+      .song--info--container {
+        @include flexBox(row);
+        align-items: center;
+        gap: 16px;
+        img {
+          object-fit: cover;
+          width: 48px;
+        }
+        .song--text {
+          h3 {
+            font-size: 18px;
+          }
+          p {
+            font-size: 14px;
+            margin-top: 2px;
+            color: $grey-text;
+          }
+        }
+      }
+      .duration {
+        color: $grey-text;
+        font-size: 18px;
+      }
+    }
+  }
+}
+.outer--search--box {
+  padding: 0 20px;
+}
+
+// Music  Player
+.music--player--wrapper {
+  background: rgba(82, 83, 20, 0.199);
+  @include flexBox(row);
+  height: inherit;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  @media (min-width: 850px) {
+    grid-column: span 3;
+    height: 100%;
+  }
+  .music--player--container {
+    @include flexBox(column);
+    width: clamp(350px, 80%, 400px);
+    gap: 40px;
+    @media (min-width: 850px) {
+      width: clamp(350px, 80%, 480px);
+    }
+    .song--header {
+      @include flexBox(column);
+      gap: 8px;
+      h2 {
+        font-size: 32px;
+        color: white;
+      }
+      p {
+        font-size: 16px;
+        color: $grey-text;
+      }
+    }
+
+    .music--player {
+      @include flexBox(column);
+      gap: 24px;
+      .cover--art {
+        border-radius: 8px;
+        width: 100%;
+        height: 400px;
+        @media (min-width: 1100px) {
+          height: 480px;
+        }
+      }
+      .controls {
+        @include flexBox(column);
+        gap: 40px;
+        .progress--bar {
+          display: flex;
+          border-radius: 16px;
+          height: 6px;
+          width: 100%;
+        }
+        .music--playback--wrapper {
+          @include flexBox2(row, space-between, center);
+          // background: red;
+          .control--btn {
+            @include buttonStyle(#ffffff23, #fff, #ffffff38, 2px);
+          }
+        }
+      }
+    }
+  }
+}
+
+// song progress wrapper
+.song--progress {
+  @include flexBox(column);
+  gap: 10px;
+  .song--progress--time {
+    @include flexBox2(row, space-between, center);
+    p {
+      font-size: 18px;
+      color: $text-color;
+    }
+  }
+}
+
+.playback--container {
+  @include flexBox2(row, center, center);
+  gap: 32px;
+
+  .playback--btn {
+    font-size: 25px;
+    color: rgba(255, 255, 255, 0.35);
+    &:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .play--btn {
+    @include buttonStyle(white, #000, #ffffff65, 0px);
+  }
+}
+
+.action--wrapper {
+  @include flexBox2(row, center, center);
+  background: $grey;
+  position: relative;
+  position: absolute;
+  top: 55px;
+  border: 1px solid rgb(165, 70, 114);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px;
+  border-radius: 8px;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+  &.show {
+    height: 45px;
+    z-index: 10;
+    opacity: 1;
+    width: 45px;
+    transition: 0.2s linear;
+  }
+  button {
+    font-size: 20px;
+    color: $text-color;
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+input[type="range"] {
+  --background-size: 40%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  background-image: linear-gradient(#f7b9e7, #a9def7);
+  background-size: var(--background-size) 100%;
+  background-repeat: no-repeat;
+  height: 0.3rem;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+
+  &::-webkit-slider-runnable-track {
+    appearance: none;
+    background: transparent;
+    border-radius: 20px;
+    transition: 0.3s linear;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: ew-resize;
+    background: #cecbca;
+    height: 20px;
+    width: 20px;
+    transition: 0.3s linear;
+    border-radius: 50%;
+  }
+}
