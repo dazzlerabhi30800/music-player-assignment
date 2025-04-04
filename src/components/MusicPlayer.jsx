@@ -15,6 +15,8 @@ const MusicPlayer = () => {
     setTotalDuration,
     setCurrDuration,
     handleRecent,
+    loading,
+    setLoading,
   } = useMusicContext();
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -29,8 +31,11 @@ const MusicPlayer = () => {
       audioRef.current.pause();
       return;
     }
-    handleRecent(currSong.id);
-    audioRef.current.play();
+    console.log("hello is it playing");
+    if (!loading && isPlaying) {
+      handleRecent(currSong.id);
+      audioRef.current.play();
+    }
   }, [isPlaying]);
 
   // when the music info is changed
@@ -38,9 +43,10 @@ const MusicPlayer = () => {
     if (!playRef.current) return;
     audioRef.current.src = currSong.musicUrl;
     audioRef.current.currentTime = 0;
-    audioRef.current.play();
+    setIsPlaying(false);
     handleRecent(currSong.id);
-    setIsPlaying(true);
+    // audioRef.current.play();
+    // setIsPlaying(true);
   }, [currSong]);
 
   // for current song playing event listener
@@ -60,7 +66,10 @@ const MusicPlayer = () => {
   };
 
   const handleDuration = () => {
+    if (!playRef.current) return;
+    setLoading(false);
     setTotalDuration(Math.floor(audioRef.current.duration));
+    setIsPlaying(true);
   };
 
   useEffect(() => {
@@ -95,16 +104,21 @@ const MusicPlayer = () => {
                 </button>
                 <button
                   onClick={() => setIsPlaying((prev) => !prev)}
+                  disabled={loading}
                   className="play--btn"
                 >
-                  {isPlaying ? (
-                    <i className="bi bi-pause-fill"></i>
+                  {!loading ? (
+                    isPlaying ? (
+                      <i className="bi bi-pause-fill"></i>
+                    ) : (
+                      <i className="bi bi-play-fill"></i>
+                    )
                   ) : (
-                    <i className="bi bi-play-fill"></i>
+                    <i className="bi bi-arrow-repeat"></i>
                   )}
                 </button>
                 <button onClick={nextIndex} className="playback--btn">
-                  <i className="bi bi-fast-forward-fill"></i>
+                  <i className="bi bi-fast-forward-fill loader"></i>
                 </button>
               </div>
               {/* Volume Button */}

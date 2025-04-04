@@ -3,8 +3,10 @@ import { useMusicContext } from "../context/Context";
 import { formatTime } from "../utils/formatTime";
 
 const MusicContainer = ({ searchString }) => {
-  const { data, currTab, setCurrSong, playRef, currSong } = useMusicContext();
+  const { data, currTab, setCurrSong, playRef, currSong, setLoading } =
+    useMusicContext();
   const handlePlayMusic = (music) => {
+    setLoading(true);
     setCurrSong(music);
     if (!playRef.current) {
       playRef.current = true;
