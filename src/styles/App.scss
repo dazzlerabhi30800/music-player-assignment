@@ -313,7 +313,6 @@ main {
     @include flexBox(column);
     gap: 10px;
     padding: 0 20px;
-    transition: 0.3s linear;
 
     &::-webkit-scrollbar {
       width: 4px;
@@ -323,7 +322,6 @@ main {
     &::-webkit-scrollbar-thumb {
       background: transparent;
       border-radius: 10px;
-      transition: 0.3s linear;
     }
     &:hover::-webkit-scrollbar-thumb {
       background: #b3b2b2;
