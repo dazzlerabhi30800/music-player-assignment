@@ -2,9 +2,14 @@ import React from "react";
 import { useMusicContext } from "../context/Context";
 
 const MenuBtn = () => {
-  const { showList, setShowList } = useMusicContext();
+  const { showList, setShowList, setCurrTab, setTabTitle } = useMusicContext();
+  const handleCloseList = () => {
+    setShowList(false);
+    setCurrTab("home");
+    setTabTitle("For You");
+  };
   return (
-    <button onClick={() => setShowList((prev) => !prev)} className="menu--btn">
+    <button onClick={handleCloseList} className="menu--btn">
       {!showList ? (
         <i className="bi bi-list"></i>
       ) : (
