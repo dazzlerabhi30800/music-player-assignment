@@ -14,7 +14,7 @@ const MusicContainer = ({ searchString }) => {
   };
   const musicData = data[currTab];
   const filteredData = musicData.filter((music) =>
-    music.title.toLowerCase().includes(searchString.toLowerCase())
+    music.title.toLowerCase().includes(searchString.toLowerCase()),
   );
   if (filteredData.length === 0)
     return (
@@ -23,7 +23,7 @@ const MusicContainer = ({ searchString }) => {
       </div>
     );
   return (
-    <div className="playlist--wrapper">
+    <div className={`playlist--wrapper`}>
       {/* Comp */}
       {filteredData?.map((music) => {
         const { id, title, thumbnail, artistName, duration } = music;

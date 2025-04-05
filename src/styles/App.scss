@@ -35,9 +35,11 @@ $device-width: 950px;
   border-radius: 50%;
   @include flexBox2(row, center, center);
   transition: 0.3s linear;
+
   &:hover {
     background: $hoverBg;
   }
+
   i {
     margin-top: $iconMargin;
   }
@@ -49,12 +51,14 @@ $device-width: 950px;
   box-sizing: border-box;
   font-family: "Baskier";
 }
+
 button {
   background: transparent;
   border: none;
   outline: none;
   cursor: pointer;
   transition: 0.3s linear;
+
   &:disabled {
     cursor: not-allowed;
     opacity: 0.7;
@@ -75,11 +79,13 @@ main {
   flex-direction: column;
   background: linear-gradient(108.18deg, var(--bg-1) 2.46%, var(--bg-2) 99.84%);
   transition: all 0.5s linear;
+
   @media (min-width: $device-width) {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(6, 1fr);
   }
+
   @media (min-width: 1200px) {
     gap: 0;
   }
@@ -91,6 +97,7 @@ main {
   height: fit-content;
   box-shadow: 0 0 30px 1px #1414149d;
   border-bottom: 1px solid #57555577;
+
   @media (min-width: $device-width) {
     padding: 32px 0 32px 20px;
     box-shadow: none;
@@ -100,73 +107,89 @@ main {
     border-bottom: none;
     justify-content: space-between;
   }
+
   @media (min-width: 1200px) {
     padding: 32px 0 32px 32px;
   }
+
   header {
     @include flexBox(column);
     gap: 28px;
     width: 100%;
+
     .logo {
       width: 133.41px;
       height: 40px;
       object-fit: cover;
       display: none;
+
       @media (min-width: $device-width) {
         display: block;
         width: 110px;
         height: auto;
       }
+
       @media (min-width: 1200px) {
         width: 133.41px;
         height: 40px;
       }
     }
+
     .links {
       @include flexBox(row);
       list-style: none;
       justify-content: space-between;
       width: 100%;
       gap: 0;
+
       @media (min-width: $device-width) {
         flex-direction: column;
         gap: 24px;
       }
+
       li {
         padding: 12px 0;
         flex-grow: 1;
         font-size: 14px;
         text-align: center;
+
         a {
           color: #ffffff;
           opacity: 0.4;
           text-decoration: none;
           width: 100%;
           transition: 0.3s linear;
+
           &:hover {
             opacity: 1;
           }
+
           &.highlight {
             opacity: 1;
             font-weight: 700;
           }
         }
+
         @media (min-width: 550px) {
           font-size: 16px;
         }
+
         @media (min-width: $device-width) {
           text-align: left;
           padding: 0;
         }
+
         @media (min-width: 1100px) {
           font-size: 20px;
         }
       }
     }
   }
+
   .cover--img {
     display: none;
     border: 2px solid #a7a7a7;
+
     @media (min-width: $device-width) {
       display: block;
     }
@@ -190,33 +213,47 @@ main {
   padding-bottom: 20px;
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 95%;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   transform: translateY(100%);
   // background: black;
   background: linear-gradient(108.18deg, var(--bg-1) 2.46%, var(--bg-2) 99.84%);
   z-index: 44;
+
+  &.transition {
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
   // show on link change
   &.active {
     transform: translateY(0);
-    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
+
   @include flexBox(column);
   gap: 24px;
+
   @media (min-width: $device-width) {
     position: static;
     grid-column: span 2;
     transform: translateY(0);
     background: none;
+    border: none;
   }
+
   @media (min-width: 1200px) {
     grid-column: span 2;
   }
+
   h1 {
     font-size: 32px;
     padding: 0 20px;
+
     @media (min-width: $device-width) {
       font-size: 26px;
     }
+
     @media (min-width: 1200px) {
       font-size: 32px;
     }
@@ -231,9 +268,11 @@ main {
     background: rgba(255, 255, 255, 0.08);
     border-radius: 8px;
     gap: 2px;
+
     @media (min-width: 1200px) {
       padding: 9px 16px;
     }
+
     input {
       background: none;
       color: #fff;
@@ -242,29 +281,35 @@ main {
       width: 100%;
       outline: none;
       border: none;
+
       &::placeholder {
         color: $grey-text;
       }
     }
+
     button {
       font-size: 20px;
       color: $grey-text;
     }
   }
+
   .empty--playlist {
     @include flexBox2(row, center, center);
     flex: 1;
     height: inherit;
+
     p {
       font-size: 32px;
       font-weight: 700;
     }
   }
+
   .playlist--wrapper {
     overflow-y: auto;
     padding: 0 20px;
     @include flexBox(column);
     gap: 10px;
+
     .playlist--comp {
       @include flexBox(row);
       align-items: center;
@@ -273,26 +318,33 @@ main {
       cursor: pointer;
       padding: 10px;
       transition: 0.3s linear;
+
       &.active {
         background: rgba(255, 255, 255, 0.11);
       }
+
       &:hover {
         background: rgba(255, 255, 255, 0.11);
       }
+
       @media (min-width: 1200px) {
         padding: 20px;
       }
+
       .song--info--container {
         @include flexBox(row);
         align-items: center;
         gap: 16px;
+
         img {
           object-fit: cover;
           width: 48px;
         }
+
         .song--text {
           h3 {
             font-size: 18px;
+
             @media (min-width: $device-width) {
               font-size: 14px;
             }
@@ -301,6 +353,7 @@ main {
               font-size: 18px;
             }
           }
+
           p {
             font-size: 14px;
             margin-top: 2px;
@@ -316,6 +369,7 @@ main {
           }
         }
       }
+
       .duration {
         color: $grey-text;
         font-size: 18px;
@@ -323,6 +377,7 @@ main {
     }
   }
 }
+
 .outer--search--box {
   padding: 0 10px;
 }
@@ -334,24 +389,30 @@ main {
   flex: 1;
   align-items: center;
   justify-content: center;
+
   @media (min-width: $device-width) {
     grid-column: span 3;
     height: 100%;
   }
+
   .music--player--container {
     @include flexBox(column);
     width: clamp(300px, 80%, 400px);
     gap: 40px;
+
     @media (min-width: $device-width) {
       width: clamp(350px, 80%, 480px);
     }
+
     .song--header {
       @include flexBox(column);
       gap: 8px;
+
       h2 {
         font-size: 32px;
         color: white;
       }
+
       p {
         font-size: 16px;
         color: $grey-text;
@@ -361,28 +422,35 @@ main {
     .music--player {
       @include flexBox(column);
       gap: 24px;
+
       .cover--art {
         border-radius: 8px;
         width: 100%;
         height: 350px;
+
         @media (min-width: 450px) {
           height: 420px;
         }
+
         @media (min-width: 1100px) {
           height: 460px;
         }
       }
+
       .controls {
         @include flexBox(column);
         gap: 40px;
+
         .progress--bar {
           display: flex;
           border-radius: 16px;
           height: 6px;
           width: 100%;
         }
+
         .music--playback--wrapper {
           @include flexBox2(row, space-between, center);
+
           // background: red;
           .control--btn {
             @include buttonStyle(#ffffff23, #fff, #ffffff38, 2px);
@@ -397,8 +465,10 @@ main {
 .song--progress {
   @include flexBox(column);
   gap: 10px;
+
   .song--progress--time {
     @include flexBox2(row, space-between, center);
+
     p {
       font-size: 18px;
       color: $text-color;
@@ -413,10 +483,12 @@ main {
   .playback--btn {
     font-size: 25px;
     color: rgba(255, 255, 255, 0.35);
+
     &:hover {
       color: rgba(255, 255, 255, 0.5);
     }
   }
+
   .play--btn {
     @include buttonStyle(white, #000, #ffffff65, 0px);
   }
@@ -437,6 +509,7 @@ main {
   height: 40px;
   width: 40px;
   z-index: -1;
+
   &.isFav {
     border-color: #f51b5c;
   }
@@ -446,9 +519,11 @@ main {
     display: flex;
     transition: 0.2s linear;
   }
+
   button {
     font-size: 16px;
     color: $text-color;
+
     &.isFav {
       color: red;
     }
@@ -494,6 +569,7 @@ main {
 
 .volume--control {
   position: relative;
+
   .volume--slider {
     position: absolute;
     left: 30%;
@@ -506,6 +582,7 @@ main {
     padding: 6px;
     border-radius: 5px;
     @include flexBox2(row, center, center);
+
     input {
       width: 100%;
     }
@@ -517,17 +594,19 @@ main {
   position: fixed;
   top: 15px;
   right: 15px;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   color: white;
   @include flexBox2(row, center, center);
   border: 2px solid white;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 18px;
+
   &:hover {
     border-color: $grey-text;
     color: $grey-text;
   }
+
   @media (min-width: $device-width) {
     display: none;
   }
@@ -537,6 +616,7 @@ main {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

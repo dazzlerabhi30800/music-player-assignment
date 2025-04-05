@@ -42,7 +42,7 @@ const SidebarNav = () => {
                   e.preventDefault();
                   setCurrTab(link.label);
                   setTabTitle(link.title);
-                  if (resize < 950) {
+                  if (resize < 950 && !showList) {
                     setShowList(true);
                   }
                   if (resize >= 950 && showList) {
