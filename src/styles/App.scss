@@ -7,6 +7,8 @@ $image-width: 48px;
 $image-height: 48px;
 $device-width: 1000px;
 
+/* Player */
+
 // font
 
 @font-face {
@@ -78,6 +80,7 @@ main {
   display: flex;
   flex-direction: column;
   background: linear-gradient(108.18deg, var(--bg-1) 2.46%, var(--bg-2) 99.84%);
+
   transition: all 0.5s linear;
 
   @media (min-width: $device-width) {

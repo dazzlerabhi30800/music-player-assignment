@@ -8,8 +8,8 @@ export const songData = [
     artistName: "Weeknd",
     duration: 262,
 
-    bg1: "#34141d",
-    bg2: "#1d0609",
+    bg1: "#201606",
+    bg2: "#000000",
   },
   {
     id: 2,
@@ -42,8 +42,8 @@ export const songData = [
     musicUrl: "/songs/gust-of-wind.mp3",
     artistName: "Pharell Williams",
     duration: 298,
-    bg1: "#201606",
-    bg2: "#000000",
+    bg1: "#34141d",
+    bg2: "#1d0609",
   },
 
   {
