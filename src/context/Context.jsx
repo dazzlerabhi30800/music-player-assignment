@@ -7,10 +7,10 @@ export default function MusicContextProvider({ children }) {
   const [musicData, setMusicData] = useState(songData);
   const [currSong, setCurrSong] = useState(songData[0]);
   const [favMusic, setFavMusic] = useState(
-    JSON.parse(localStorage.getItem("favData")) || []
+    JSON.parse(localStorage.getItem("favData")) || [],
   );
   const [recentData, setRecentData] = useState(
-    JSON.parse(sessionStorage.getItem("recents")) || []
+    JSON.parse(sessionStorage.getItem("recents")) || [],
   );
   const [showList, setShowList] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -27,11 +27,13 @@ export default function MusicContextProvider({ children }) {
 
   const [currSongIndex, setCurrSongIndex] = useState(0);
   const nextIndex = () => {
+    setLoading(true);
     setCurrSongIndex((prev) => (prev + 1) % musicData.length);
   };
   const prevIndex = () => {
+    setLoading(true);
     setCurrSongIndex((prev) =>
-      prev - 1 < 0 ? musicData.length - 1 : prev - 1
+      prev - 1 < 0 ? musicData.length - 1 : prev - 1,
     );
   };
   const data = {
