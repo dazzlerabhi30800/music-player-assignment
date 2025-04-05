@@ -2,7 +2,14 @@
   "headers": [
     {
       "source": "/songs/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate"
+        },
+        { "key": "Pragma", "value": "no-cache" },
+        { "key": "Expires", "value": "0" }
+      ]
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
