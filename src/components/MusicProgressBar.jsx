@@ -37,7 +37,8 @@ const MusicProgressBar = () => {
           min="0"
           value={progressVal}
           onChange={handleValue}
-          max={totalDuration || currSong.duration}
+          // max={totalDuration || currSong.duration}
+          max={currSong.duration}
         />
       </div>
       <div className="song--progress--time">
