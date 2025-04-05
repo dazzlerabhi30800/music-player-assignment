@@ -5,7 +5,7 @@ $grey-text: #ffffff80;
 $grey: rgba(255, 255, 255, 30%);
 $image-width: 48px;
 $image-height: 48px;
-$device-width: 950px;
+$device-width: 1000px;
 
 // font
 
@@ -82,12 +82,13 @@ main {
 
   @media (min-width: $device-width) {
     display: grid;
-    gap: 10px;
+    gap: 20px;
     grid-template-columns: repeat(6, 1fr);
   }
 
-  @media (min-width: 1200px) {
-    gap: 0;
+  @media (min-width: 1300px) {
+    gap: 30px;
+    grid-template-columns: repeat(10, 1fr);
   }
 }
 
@@ -103,6 +104,7 @@ main {
     box-shadow: none;
     grid-column: span 1;
     flex-direction: column;
+    width: 100%;
     height: 100%;
     border-bottom: none;
     justify-content: space-between;
@@ -110,6 +112,9 @@ main {
 
   @media (min-width: 1200px) {
     padding: 32px 0 32px 32px;
+  }
+  @media (min-width: 1300px) {
+    grid-column: span 2;
   }
 
   header {
@@ -150,24 +155,19 @@ main {
       li {
         padding: 12px 0;
         flex-grow: 1;
+        border: 1px solid #505050;
         font-size: 14px;
         text-align: center;
-
-        a {
-          color: #ffffff;
-          opacity: 0.4;
-          text-decoration: none;
-          width: 100%;
-          transition: 0.3s linear;
-
-          &:hover {
-            opacity: 1;
-          }
-
-          &.highlight {
-            opacity: 1;
-            font-weight: 700;
-          }
+        color: #696767;
+        transition: 0.3s linear;
+        cursor: pointer;
+        $highlight-color: #e6e4e4;
+        &.highlight {
+          border-color: $highlight-color;
+          color: $highlight-color;
+        }
+        &:hover {
+          color: $highlight-color;
         }
 
         @media (min-width: 550px) {
@@ -177,10 +177,11 @@ main {
         @media (min-width: $device-width) {
           text-align: left;
           padding: 0;
+          border: none;
         }
 
-        @media (min-width: 1100px) {
-          font-size: 20px;
+        @media (min-width: 1300px) {
+          font-size: 18px;
         }
       }
     }
@@ -213,10 +214,10 @@ main {
   padding-bottom: 20px;
   position: fixed;
   width: 100%;
-  height: 95%;
+  height: 94%;
   bottom: 0;
   left: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  // border-top: 1px solid rgba(255, 255, 255, 0.2);
   transform: translateY(100%);
   // background: black;
   background: linear-gradient(108.18deg, var(--bg-1) 2.46%, var(--bg-2) 99.84%);
@@ -242,8 +243,8 @@ main {
     border: none;
   }
 
-  @media (min-width: 1200px) {
-    grid-column: span 2;
+  @media (min-width: 1300px) {
+    grid-column: span 3;
   }
 
   h1 {
@@ -394,6 +395,11 @@ main {
     grid-column: span 3;
     height: 100%;
   }
+  @media (min-width: 1300px) {
+    grid-column: span 5;
+    align-items: flex-start;
+    padding-top: 50px;
+  }
 
   .music--player--container {
     @include flexBox(column);
@@ -401,7 +407,7 @@ main {
     gap: 40px;
 
     @media (min-width: $device-width) {
-      width: clamp(350px, 80%, 480px);
+      width: clamp(350px, 80%, 440px);
     }
 
     .song--header {
@@ -433,7 +439,7 @@ main {
         }
 
         @media (min-width: 1100px) {
-          height: 460px;
+          height: 440px;
         }
       }
 

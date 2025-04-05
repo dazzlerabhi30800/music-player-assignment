@@ -28,30 +28,29 @@ const SidebarNav = () => {
     },
   ];
   const resize = Resize();
+  const handleNavLink = (label, title) => {
+    // e.preventDefault();
+    setCurrTab(label);
+    setTabTitle(title);
+    if (resize < 950 && !showList) {
+      setShowList(true);
+    }
+    if (resize >= 950 && showList) {
+      setShowList(false);
+    }
+  };
   return (
     <nav className="navbar">
       <header>
         <img src="./logo.png" alt="Spotify" className="logo" />
         <ul className="links">
           {linkData?.map((link, index) => (
-            <li key={index}>
-              <a
-                className={`${currTab === link.label && "highlight"}`}
-                href="javascript:;"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCurrTab(link.label);
-                  setTabTitle(link.title);
-                  if (resize < 950 && !showList) {
-                    setShowList(true);
-                  }
-                  if (resize >= 950 && showList) {
-                    setShowList(false);
-                  }
-                }}
-              >
-                {link.title}
-              </a>
+            <li
+              key={index}
+              onClick={() => handleNavLink(link.label, link.title)}
+              className={`${currTab === link.label && "highlight"}`}
+            >
+              {link.title}
             </li>
           ))}
         </ul>
