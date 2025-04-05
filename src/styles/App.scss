@@ -400,6 +400,9 @@ main {
     align-items: flex-start;
     padding-top: 50px;
   }
+  @media (min-width: 1400px) {
+    padding-top: 70px;
+  }
 
   .music--player--container {
     @include flexBox(column);
