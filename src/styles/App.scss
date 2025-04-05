@@ -434,6 +434,10 @@ main {
       width: clamp(350px, 80%, 440px);
     }
 
+    @media (min-width: 1450px) {
+      width: clamp(350px, 80%, 480px);
+    }
+
     .song--header {
       @include flexBox(column);
       gap: 8px;
@@ -465,7 +469,7 @@ main {
         @media (min-width: 1100px) {
           height: 460px;
         }
-        @media (min-width: 1300px) {
+        @media (min-width: 1450px) {
           height: 480px;
         }
       }
