@@ -156,12 +156,13 @@ main {
       }
 
       li {
+        $inactive-text-color: #808080;
         padding: 12px 0;
         flex-grow: 1;
-        border: 1px solid #505050;
+        border: 1px solid $inactive-text-color;
         font-size: 14px;
         text-align: center;
-        color: #696767;
+        color: $inactive-text-color;
         transition: 0.3s linear;
         cursor: pointer;
         $highlight-color: #e6e4e4;
@@ -313,11 +314,23 @@ main {
     @include flexBox(column);
     gap: 10px;
     padding: 0 20px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    // scrollbar-width: none;
+    // -ms-overflow-style: none;
+    transition: 0.3s linear;
 
     &::-webkit-scrollbar {
-      display: none;
+      width: 4px;
+      // background: #4c4c4d;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: transparent;
+      border-radius: 10px;
+      transition: 0.3s linear;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      background: #b3b2b2;
     }
 
     .playlist--comp {
