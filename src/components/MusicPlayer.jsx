@@ -58,6 +58,7 @@ const MusicPlayer = () => {
       setIsPlaying(false);
       setBackgroundSize("0%");
       setProgressVal(0);
+      setCurrDuration(0);
       audioRef.current.currenTime = 0;
     }
   };
