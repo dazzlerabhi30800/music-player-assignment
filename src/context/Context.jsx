@@ -26,14 +26,23 @@ export default function MusicContextProvider({ children }) {
   const [currDuration, setCurrDuration] = useState(0);
 
   const [currSongIndex, setCurrSongIndex] = useState(0);
+
+  // NOTE:  get the index of the curr song
+  const getCurrSongIndex = () => {
+    const findIndex = musicData.findIndex((music) => music.id === currSong.id);
+    return findIndex ?? 0;
+  };
+
   const nextIndex = () => {
     setLoading(true);
-    setCurrSongIndex((prev) => (prev + 1) % musicData.length);
+    const currIndex = getCurrSongIndex();
+    setCurrSongIndex(() => (currIndex + 1) % musicData.length);
   };
   const prevIndex = () => {
     setLoading(true);
-    setCurrSongIndex((prev) =>
-      prev - 1 < 0 ? musicData.length - 1 : prev - 1,
+    const currIndex = getCurrSongIndex();
+    setCurrSongIndex(() =>
+      currIndex - 1 < 0 ? musicData.length - 1 : currIndex - 1,
     );
   };
   const data = {
