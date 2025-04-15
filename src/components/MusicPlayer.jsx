@@ -55,11 +55,11 @@ const MusicPlayer = () => {
     setCurrDuration(Math.floor(currTime));
     setBackgroundSize(bgSize === "NaN%" ? "0%" : bgSize);
     if (currTime === duration) {
+      audioRef.current.currenTime = 0;
       setIsPlaying(false);
       setBackgroundSize("0%");
       setProgressVal(0);
       setCurrDuration(0);
-      audioRef.current.currenTime = 0;
     }
   };
 
