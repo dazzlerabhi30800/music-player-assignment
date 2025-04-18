@@ -22,22 +22,16 @@ const MusicProgressBar = () => {
     setBackgroundSize(bgSize);
   };
 
-  const handleInput = (e) => {
-    const bgSize = (e.target.value / totalDuration) * 100 + "%";
-    setCurrDuration(e.target.value);
-    setBackgroundSize(bgSize);
-  };
   return (
     <div className="song--progress">
       <div className="progress--bar">
         <input
-          onInput={handleInput}
           style={{ "--background-size": backgroundSize }}
           type="range"
           min="0"
           value={progressVal}
-          onChange={handleValue}
-          // max={totalDuration || currSong.duration}
+          onInput={handleValue}
+          // onChange={handleValue}
           max={currSong.duration}
         />
       </div>
